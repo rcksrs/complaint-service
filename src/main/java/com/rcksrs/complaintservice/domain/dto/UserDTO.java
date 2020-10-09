@@ -3,6 +3,8 @@ package com.rcksrs.complaintservice.domain.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import com.rcksrs.complaintservice.domain.Contact;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = -6427033964301315423L;
 
+	@NotBlank(message = "Fill in the id field")
 	private String id;
 	private String name;
 	private String country;

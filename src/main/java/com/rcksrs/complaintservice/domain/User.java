@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +25,23 @@ import lombok.NoArgsConstructor;
 public class User implements Serializable {
 	private static final long serialVersionUID = -2334526699098318527L;
 
+	@Id
 	private String id;
+	
+	@NotBlank(message = "Fill in the name field")
 	private String name;
+	
+	@NotBlank(message = "Fill in the CPF field")
+	@CPF(message = "Invalid CPF")
+	@Indexed
 	private String cpf;
+	
 	private LocalDate birthdate;
+	
+	@NotNull(message = "Fill in the address field")
 	private Address address;
+	
+	@NotNull(message = "Fill in at least one contact field")
 	private List<Contact> contacts;
 
 }

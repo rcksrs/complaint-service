@@ -2,6 +2,11 @@ package com.rcksrs.complaintservice.domain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.rcksrs.complaintservice.domain.dto.CompanyDTO;
@@ -20,10 +25,20 @@ import lombok.NoArgsConstructor;
 public class Complaint implements Serializable {
 	private static final long serialVersionUID = -5913813488761289154L;
 	
+	@Id
 	private String id;
+	
+	@NotBlank(message = "Fill in the title field")
 	private String title;
+	
+	@NotBlank(message = "Fill in the description field")
+	@Size(min = 50, message = "Complaint should have at least 50 characters")
 	private String description;
+	
+	@NotNull(message = "Fill in the user field")
 	private UserDTO user;
+	
+	@NotNull(message = "Fill in the company field")
 	private CompanyDTO company;
 
 }
