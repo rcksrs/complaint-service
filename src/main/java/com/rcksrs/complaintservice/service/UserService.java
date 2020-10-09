@@ -16,7 +16,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserService {
 	
-	private UserRepository userRepository;	
+	private UserRepository userRepository;
+	
+	public User findById(String id) {
+		return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
+	}
 	
 	public User findByCpf(String cpf) {
 		return userRepository.findByCpf(cpf).orElseThrow(() -> new ResourceNotFoundException());
