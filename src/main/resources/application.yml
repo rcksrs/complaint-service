@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: complaint-service
+  profiles:
+    active: dev
+    
+server:
+  port: 8082
+  servlet:
+    context-path: /complaint
+
+---
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      uri: ${MONGODB_DEV_URL}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+---
+spring:
+  profiles: prod
+  data:
+    mongodb:
+      uri: ${MONGODB_URL}
+  
