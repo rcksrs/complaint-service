@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 
 import com.rcksrs.complaintservice.domain.Contact;
+import com.rcksrs.complaintservice.domain.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,5 +27,16 @@ public class UserDTO implements Serializable {
 	private String state;
 	private String city;
 	private List<Contact> contacts;
+	
+	public static UserDTO fromUser(User user) {
+		return UserDTO.builder()
+				.id(user.getId())
+				.name(user.getName())
+				.country(user.getAddress().getCountry())
+				.state(user.getAddress().getState())
+				.city(user.getAddress().getCity())
+				.contacts(user.getContacts())
+				.build();
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.rcksrs.complaintservice.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,6 +31,8 @@ public class Complaint implements Serializable {
 	
 	@NotBlank(message = "Fill in the title field")
 	private String title;
+	
+	private LocalDate date;
 	
 	@NotBlank(message = "Fill in the description field")
 	@Size(min = 50, message = "Complaint should have at least 50 characters")
