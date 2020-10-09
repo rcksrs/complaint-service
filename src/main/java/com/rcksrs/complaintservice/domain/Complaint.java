@@ -51,8 +51,8 @@ public class Complaint implements Serializable {
 	
 	private Boolean isActive;
 	
-	@Min(value = 0, message = "")
-	@Max(value = 10, message = "")
+	@Min(value = 0, message = "Rating must be greater than or equal to 0")
+	@Max(value = 10, message = "Rating must be less than or equal to 10")
 	private Integer rating;
 
 }
