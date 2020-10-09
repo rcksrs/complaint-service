@@ -14,12 +14,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyDTO implements Serializable {
-	private static final long serialVersionUID = -6248065233686505394L;
-	
+public class UserDTO implements Serializable {
+	private static final long serialVersionUID = -6427033964301315423L;
+
 	private String id;
 	private String name;
-	private String cnpj;
 	private String country;
 	private String state;
 	private String city;

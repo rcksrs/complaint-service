@@ -17,12 +17,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
-	 private static final long serialVersionUID = -2334526699098318527L;
-	 
-	 private String id;
-	 private String name;
-	 private String cpf;
-	 private LocalDate birthdate;
-	 private List<Contact> contacts;
+	private static final long serialVersionUID = -2334526699098318527L;
+
+	private String id;
+	private String name;
+	private String cpf;
+	private LocalDate birthdate;
+	private Address address;
+	private List<Contact> contacts;
 
 }

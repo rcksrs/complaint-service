@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.rcksrs.complaintservice.domain.dto.CompanyDTO;
+import com.rcksrs.complaintservice.domain.dto.UserDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,7 @@ public class Complaint implements Serializable {
 	private String id;
 	private String title;
 	private String description;
-	private User user;
+	private UserDTO user;
 	private CompanyDTO company;
 
 }
