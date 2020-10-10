@@ -22,7 +22,7 @@ import com.rcksrs.complaintservice.domain.User;
 import com.rcksrs.complaintservice.service.UserService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 public class UserController {
 	
 	@Autowired

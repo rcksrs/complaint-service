@@ -1,5 +1,7 @@
 package com.rcksrs.complaintservice.domain;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class Address implements Serializable {
+	private static final long serialVersionUID = -1140633214481532102L;
+
 	private String zipCode;
 	
 	@NotBlank(message = "Fill in the country field")

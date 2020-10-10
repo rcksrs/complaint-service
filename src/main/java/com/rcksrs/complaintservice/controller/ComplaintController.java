@@ -23,7 +23,7 @@ import com.rcksrs.complaintservice.domain.Reply;
 import com.rcksrs.complaintservice.service.ComplaintService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/complaint")
 public class ComplaintController {
 	
 	@Autowired

@@ -16,11 +16,6 @@ spring:
     mongodb:
       uri: ${MONGODB_DEV_URL}
 
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-
 ---
 spring:
   profiles: prod

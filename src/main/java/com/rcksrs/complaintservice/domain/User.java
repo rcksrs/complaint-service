@@ -12,6 +12,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,6 +38,7 @@ public class User implements Serializable {
 	@Indexed
 	private String cpf;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING) 
 	private LocalDate birthdate;
 	
 	@NotNull(message = "Fill in the address field")

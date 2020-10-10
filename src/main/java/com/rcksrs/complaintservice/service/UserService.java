@@ -37,15 +37,15 @@ public class UserService {
 	
 	public User save(User user) {
 		if(user.getId() != null || userRepository.findByCpf(user.getCpf()).isPresent()) throw new DuplicatedResourceException();
-		if(user.getContacts().stream().filter(c -> c.getType() == ContactType.PHONE).count() > 0) throw new BusinessException("Fill in at least one phone number");
-		if(user.getContacts().stream().filter(c -> c.getType() == ContactType.EMAIL).count() > 0) throw new BusinessException("Fill in at least one email");
+		if(user.getContacts().stream().filter(c -> c.getType().equals(ContactType.PHONE)).count() == 0) throw new BusinessException("Fill in at least one phone number");
+		if(user.getContacts().stream().filter(c -> c.getType().equals(ContactType.EMAIL)).count() == 0) throw new BusinessException("Fill in at least one email");
 		
 		return userRepository.save(user);
 	}
 	
 	public User update(User user) {
-		if(user.getContacts().stream().filter(c -> c.getType() == ContactType.PHONE).count() > 0) throw new BusinessException("Fill in at least one phone number");
-		if(user.getContacts().stream().filter(c -> c.getType() == ContactType.EMAIL).count() > 0) throw new BusinessException("Fill in at least one email");		
+		if(user.getContacts().stream().filter(c -> c.getType().equals(ContactType.PHONE)).count() == 0) throw new BusinessException("Fill in at least one phone number");
+		if(user.getContacts().stream().filter(c -> c.getType().equals(ContactType.EMAIL)).count() == 0) throw new BusinessException("Fill in at least one email");		
 		userRepository.findByIdAndCpf(user.getId(), user.getCpf()).orElseThrow(() -> new BusinessException("User's CPF cannot be changed"));
 		
 		return userRepository.save(user);
