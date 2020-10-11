@@ -2,16 +2,14 @@ spring:
   application:
     name: complaint-service
   profiles:
-    active: dev
+    active: ${PROFILE_ACTIVE:dev}
     
 server:
   port: 8082
-  servlet:
-    context-path: /complaint
 
 eureka:  client:    fetch-registry: true
     register-with-eureka: true
-    service-url:      defaultZone: http://localhost:8761/eureka
+    service-url:      defaultZone: ${DISCOVERY_SERVER:http://localhost:8761/eureka}
 
 ---
 spring:
