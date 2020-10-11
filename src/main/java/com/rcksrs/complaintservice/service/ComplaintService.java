@@ -68,8 +68,8 @@ public class ComplaintService {
 		throw new DuplicatedResourceException();
 	}
 	
-	public Complaint reply(Reply reply, String complaintId) {
-		var complaint = complaintRepository.findById(complaintId).orElseThrow(() -> new ResourceNotFoundException());
+	public Complaint reply(Reply reply) {
+		var complaint = complaintRepository.findById(reply.getComplaintId()).orElseThrow(() -> new ResourceNotFoundException());
 		reply.setDate(LocalDateTime.now());
 		complaint.getReplies().add(reply);
 		return complaintRepository.save(complaint);

@@ -79,8 +79,8 @@ public class ComplaintController {
 	}
 	
 	@PostMapping("/reply")
-	public ResponseEntity<Complaint> reply(@RequestBody @Valid Reply reply, @PathVariable String complaintId) {
-		var complaint = complaintService.reply(reply, complaintId);
+	public ResponseEntity<Complaint> reply(@RequestBody @Valid Reply reply) {
+		var complaint = complaintService.reply(reply);
 		return ResponseEntity.ok(complaint);
 	}
 	
