@@ -34,6 +34,7 @@ import com.rcksrs.complaintservice.exception.DuplicatedResourceException;
 import com.rcksrs.complaintservice.exception.ResourceNotFoundException;
 import com.rcksrs.complaintservice.repository.ComplaintRepository;
 import com.rcksrs.complaintservice.repository.UserRepository;
+import com.rcksrs.complaintservice.service.client.CompanyService;
 
 @SpringBootTest
 class ComplaintServiceTest {
@@ -44,11 +45,15 @@ class ComplaintServiceTest {
 	@Mock
 	private UserRepository userRepository;
 	
+	@Mock
+	private CompanyService companyService;
+	
 	@InjectMocks
 	private ComplaintService complaintService;
 	
 	private static Complaint complaint;
 	private static User user;
+	private static CompanyDTO company;
 	
 	@BeforeAll
 	static void beforeAll() {
@@ -71,12 +76,23 @@ class ComplaintServiceTest {
 				.rating(10)
 				.isActive(true)
 				.build();
+		
+		company = CompanyDTO.builder()
+				.id("1")
+				.cnpj("23647496000195")
+				.name("Lorem ipsum dolor")
+				.country("Brazil")
+				.state("Maranhao")
+				.city("Sao Luis")
+				.contacts(List.of(new Contact("9827849063", ContactType.PHONE)))
+				.build();
 	}
 
 	@Test
 	@DisplayName("Should save a complaint")
 	void testSave() {
 		when(userRepository.findById("1")).thenReturn(Optional.of(user));
+		when(companyService.findCompanyById("1")).thenReturn(company);
 		when(complaintRepository.save(any(Complaint.class))).thenReturn(complaint);
 		
 		var newComplaint = Complaint.builder()
@@ -98,6 +114,7 @@ class ComplaintServiceTest {
 	@DisplayName("Should not save a complaint when user was not found")
 	void testNotSaveUserNotFound() {
 		when(userRepository.findById("1")).thenReturn(Optional.empty());
+		when(companyService.findCompanyById("1")).thenReturn(company);
 		
 		var newComplaint = Complaint.builder()
 				.title("Aenean vel tortor")
@@ -109,11 +126,11 @@ class ComplaintServiceTest {
 		assertThrows(ResourceNotFoundException.class, () -> complaintService.save(newComplaint));		
 	}
 	
-	/*
 	@Test
 	@DisplayName("Should not save a complaint when company was not found")
 	void testNotSaveCompanyNotFound() {
 		when(userRepository.findById("1")).thenReturn(Optional.empty());
+		when(companyService.findCompanyById("1")).thenReturn(null);
 		
 		var newComplaint = Complaint.builder()
 				.title("Aenean vel tortor")
@@ -125,7 +142,6 @@ class ComplaintServiceTest {
 		assertThrows(ResourceNotFoundException.class, () -> complaintService.save(newComplaint));
 		
 	}
-	*/
 	
 	@Test
 	@DisplayName("Should not save a complaint when complaint already exists")

@@ -9,6 +9,10 @@ server:
   servlet:
     context-path: /complaint
 
+eureka:  client:    fetch-registry: true
+    register-with-eureka: true
+    service-url:      defaultZone: http://localhost:8761/eureka
+
 ---
 spring:
   profiles: dev
