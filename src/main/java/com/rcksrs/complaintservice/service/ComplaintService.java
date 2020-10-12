@@ -83,7 +83,8 @@ public class ComplaintService {
 	public Complaint close(Complaint complaint) {
 		if(complaint.getRating() == null) throw new BusinessException("Fill in the rating field");
 		var complaintSaved = complaintRepository.findById(complaint.getId()).orElseThrow(() -> new ResourceNotFoundException());
-		complaint.setIsActive(false);
+		complaintSaved.setIsActive(false);
+		complaintSaved.setRating(complaint.getRating());
 		return complaintRepository.save(complaintSaved);
 	}
 	
