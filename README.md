@@ -1,4 +1,4 @@
-# Company Service
+# Complaint Service
 📜 Microservice for registration and management of users and complaints
 
 ## 🛠 Installation
